@@ -439,10 +439,17 @@ class EasyAliPay
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         $data = curl_exec($ch);
+        curl_close($ch);
         if(curl_errno($ch)) {
             throw new ErrorException("请求出错");
         }
-        curl_close($ch);
+        $responseHeader = curl_getinfo($curl);
+        if ($responseHeader["http_code"] != 200) {
+            return [
+                "code" => $responseHeader["http_code"],
+                "message" => $data
+            ];
+        }
         return json_decode($data, true);
     }
 
