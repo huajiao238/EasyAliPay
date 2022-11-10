@@ -1,4 +1,4 @@
-## 支付宝网页支付2.0PHP类库（证书模式）
+## 支付宝证书模式PHP类库
 
 PHP版本 >= 8.0
 
@@ -15,7 +15,7 @@ PHP版本 >= 8.0
 	
 	try {
         $pay = new EasyAliPay();
-        $pay->setAppId("应用APPID");
+        $pay->setAppId("应用APPID");    //请确保在该APPID下已开通了电脑网页支付
         $pay->setPrivate_key("应用私钥");
         //$pay->setPrivateKeyPath("私钥路径")   //与setPrivateKey二选一即可
         $pay->setBizContent([
@@ -27,7 +27,6 @@ PHP版本 >= 8.0
         $pay->setNotifyUrl("异步通知地址");
         $pay->setRootSecretPath("./root_key.crt");  //设置支付宝根证书路径
         $pay->setAppSecretPath("./app_key.crt");	//设置应用证书路径
-        $pay->doPaymentRequest();
         $result =  $pay->doPaymentRequest();
         echo $result;
     }catch (ErrorException $e) {
@@ -72,7 +71,7 @@ PHP版本 >= 8.0
 	
 	try {
         $pay = new EasyAliPay();
-        $pay->setAppId("应用APPID");
+        $pay->setAppId("应用APPID");   //请确保在该APPID下已开通了H5支付
         $pay->setPrivate_key("应用私钥");
         //$pay->setPrivateKeyPath("私钥路径")   //与setPrivateKey二选一即可
         $pay->setBizContent([
@@ -101,7 +100,7 @@ require "EasyAliPay.php";
 
 try {
     $pay = new EasyAliPay();
-    $pay->setAppId("你的APPID");
+    $pay->setAppId("你的APPID");  //请确保在该APPID下已开通了单笔转账功能
     $pay->setBizContent([
         "out_biz_no" => "2022101902126",
         "trans_amount" => 1,
@@ -133,7 +132,7 @@ require "EasyAliPay.php";
 
 try {
     $pay = new EasyAliPay();
-    $pay->setAppId("你的APPID");
+    $pay->setAppId("你的APPID");    //请确保在该APPID下已开通了电脑网页支付
     $pay->setBizContent([
         "out_biz_no" => "2022101902126",  //订单号
         "trans_amount" => 1,  //金额
@@ -170,7 +169,7 @@ try {
 	
 	try {
         $pay = new EasyAliPay();
-        $pay->setAppId("应用APPID");
+        $pay->setAppId("应用APPID");  //请确保在该APPID下已开通了当面付
         $pay->setPrivate_key("应用私钥");
         //$pay->setPrivateKeyPath("私钥路径")   //与setPrivateKey二选一即可
         $pay->setBizContent([
@@ -182,7 +181,6 @@ try {
         $pay->setRootSecretPath("./root_key.crt");  //设置支付宝根证书路径
         $pay->setAppSecretPath("./app_key.crt");	//设置应用证书路径
         $pay->setType("face_scan");
-        $pay->doPaymentRequest();
         $result =  $pay->doPaymentRequest();
         print_r($result);
     }catch (ErrorException $e) {
@@ -199,7 +197,7 @@ try {
 	
 	try {
         $pay = new EasyAliPay();
-        $pay->setAppId("应用APPID");
+        $pay->setAppId("应用APPID");  //请确保在该APPID下已开通了当面付
         $pay->setPrivate_key("应用私钥");
         //$pay->setPrivateKeyPath("私钥路径")   //与setPrivateKey二选一即可
         $pay->setBizContent([
@@ -213,7 +211,6 @@ try {
         $pay->setRootSecretPath("./root_key.crt");  //设置支付宝根证书路径
         $pay->setAppSecretPath("./app_key.crt");	//设置应用证书路径
         $pay->setType("face_code");
-        $pay->doPaymentRequest();
         $result =  $pay->doPaymentRequest();
         print_r($result);
     }catch (ErrorException $e) {
@@ -230,7 +227,7 @@ try {
 	
 	try {
         $pay = new EasyAliPay();
-        $pay->setAppId("应用APPID");
+        $pay->setAppId("应用APPID");   //请确保在该APPID下已开通了APP支付
         $pay->setPrivate_key("应用私钥");
         //$pay->setPrivateKeyPath("私钥路径")   //与setPrivateKey二选一即可
         $pay->setBizContent([
@@ -242,7 +239,6 @@ try {
         $pay->setRootSecretPath("./root_key.crt");  //设置支付宝根证书路径
         $pay->setAppSecretPath("./app_key.crt");	//设置应用证书路径
         $pay->setType("app");
-        $pay->doPaymentRequest();
         $result =  $pay->doPaymentRequest();
         echo $result;    //将$result发送给客户端，由客户端调用SDK发起支付即可
     }catch (ErrorException $e) {
@@ -270,4 +266,5 @@ try {
     echo $e->getMessage();
 }
 ```
+
 
